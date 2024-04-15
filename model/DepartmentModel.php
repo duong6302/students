@@ -14,14 +14,14 @@ function updateDepartmentById(
     date_default_timezone_set('Asia/Ho_Chi_Minh');
     $db = connectionDb();
     $checkUpdate = false;
-    $sql = "UPDATE `departments` SET `name` = :nameDepartment, `slug` = :slug, `leader` = :leader, `beginning_date` = :beginning_date, `status` = :statusDepartment, `logo` = :logo, `updated_at` = :updated_at WHERE `id` = :id AND `deleted_at` IS NULL";
+    $sql = "UPDATE `departments` SET `name` = :nameDepartment, `slug` = :slug, `leader` = :leader, `date_beginning` = :date_beginning, `status` = :statusDepartment, `logo` = :logo, `updated_at` = :updated_at WHERE `id` = :id AND `deleted_at` IS NULL";
     $updateTime = date('Y-m-d H:i:s');
     $stmt = $db->prepare($sql);
     if($stmt){
         $stmt->bindParam(':nameDepartment', $name, PDO::PARAM_STR);
         $stmt->bindParam(':slug', $slug, PDO::PARAM_STR);
         $stmt->bindParam(':leader', $leader, PDO::PARAM_STR);
-        $stmt->bindParam(':beginning_date', $beginDate, PDO::PARAM_STR);
+        $stmt->bindParam(':date_beginning', $beginDate, PDO::PARAM_STR);
         $stmt->bindParam(':statusDepartment', $status, PDO::PARAM_INT);
         $stmt->bindParam(':logo', $logo, PDO::PARAM_STR);
         $stmt->bindParam(':updated_at', $updateTime, PDO::PARAM_STR);
@@ -120,14 +120,14 @@ function insertDepartment(
     date_default_timezone_set('Asia/Ho_Chi_Minh');
     $db = connectionDb();
     $flagInsert = false;
-    $sqlInsert = "INSERT INTO `departments`(`name`, `slug`, `leader`,`beginning_date`, `status`, `logo`, `created_at`) VALUES(:nameDepartment, :slug, :leader, :beginning_date, :statusDepartment, :logo, :created_at)";
+    $sqlInsert = "INSERT INTO `departments`(`name`, `slug`, `leader`,`date_beginning`, `status`, `logo`, `created_at`) VALUES(:nameDepartment, :slug, :leader, :date_beginning, :statusDepartment, :logo, :created_at)";
     $stmt = $db->prepare($sqlInsert);
     $currentDate = date('Y-m-d H:i:s');
     if($stmt){
         $stmt->bindParam(':nameDepartment', $name, PDO::PARAM_STR);
         $stmt->bindParam(':slug', $name, PDO::PARAM_STR);
         $stmt->bindParam(':leader', $leader, PDO::PARAM_STR);
-        $stmt->bindParam(':beginning_date', $beginDate, PDO::PARAM_STR);
+        $stmt->bindParam(':date_beginning', $beginDate, PDO::PARAM_STR);
         $stmt->bindParam(':statusDepartment', $status, PDO::PARAM_INT);
         $stmt->bindParam(':logo', $logo, PDO::PARAM_STR);
         $stmt->bindParam(':created_at', $currentDate, PDO::PARAM_STR);

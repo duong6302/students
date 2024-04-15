@@ -88,7 +88,7 @@ $state = trim($_GET['state'] ?? null);
                                         <img class="img-fluid" alt="<?= $item['name']; ?>" src="public/uploads/images/<?= $item['logo']; ?>" />
                                     </td>
                                     <td><?= $item['leader']; ?></td>
-                                    <td><?= $item['beginning_date']; ?></td>
+                                    <td><?= $item['date_beginning']; ?></td>
                                     <td><?= $item['status'] == 1 ? 'Active' : 'Deactive'; ?></td>
                                     <td>
                                         <a class="btn btn-info btn-sm" href="index.php?c=department&m=edit&id=<?= $item['id'];?>"> Edit</a>

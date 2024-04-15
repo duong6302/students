@@ -4,6 +4,7 @@ if (!defined('APP_ROOT_PATH')) {
 }
 
 $namePage = 'Courses';
+$state = trim($_GET['state'] ?? null);
 ?>
 <!-- load header view -->
 <?php require APP_PATH_VIEW . "partials/header_view.php"; ?>
@@ -71,25 +72,25 @@ $namePage = 'Courses';
                         <thead class="table-primary">
                             <tr>
                                 <th>ID</th>
-                                <th>Course</th>
+                                <th>Name</th>
                                 <th>Logo</th>
-                                <th>Teacher</th>
-                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Date Start</th>
                                 <th>Status</th>
                                 <th width="10%" class="text-center" colspan="2">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($course as $key => $item): ?>
+                            <?php foreach($courses as $key => $item): ?>
                                 <tr>
                                     <td><?= $item['id']; ?></td>
-                                    <td><?= $item['course'] ?></td>
+                                    <td><?= $item['name'] ?></td>
                                     <td width="10%">
-                                        <img class="img-fluid" alt="<?= $item['course']; ?>" src="public/uploads/images/<?= $item['logo']; ?>" />
+                                        <img class="img-fluid" alt="<?= $item['name']; ?>" src="public/uploads/images/<?= $item['logo']; ?>" />
                                     </td>
-                                    <td><?= $item['teacher']; ?></td>
-                                    <td><?= $item['beginning_date']; ?></td>
-                                    <td><?= $item['status'] == 1 ? 'Active' : 'Deactive'; ?></td>
+                                    <td><?= $item['description']; ?></td>
+                                    <td><?= $item['date_beginning']; ?></td>
+                                    <td><?= $item['status'] == 1 ? 'Studying' : 'Finish the course'; ?></td>
                                     <td>
                                         <a class="btn btn-info btn-sm" href="index.php?c=course&m=edit&id=<?= $item['id'];?>"> Edit</a>
                                     </td>

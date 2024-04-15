@@ -4,7 +4,7 @@
 // viet ham ket noi toi csdl
 function connectionDb(){
     try {
-        $dbh = new PDO('mysql:host=localhost;dbname=student_management', 'root', '');
+        $dbh = new PDO('mysql:host=localhost;dbname=student_mangement', 'root', '');
         return $dbh;
     } catch (PDOException $e) {
         // attempt to retry the connection after some timeout for example

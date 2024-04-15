@@ -44,7 +44,7 @@ $errorAdd = $_SESSION['error_course'] ?? null;
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <div class="form-group mb-3">
-                                            <label>Course Name</label>
+                                            <label>Name</label>
                                             <input type="text" class="form-control" name="name" value="<?= $infoDetail['name']; ?>" />
                                             <?php if(!empty($errorAdd['name'])): ?>
                                                 <span class="text-danger"><?= $errorAdd['name'] ?></span>
@@ -52,9 +52,9 @@ $errorAdd = $_SESSION['error_course'] ?? null;
                                         </div>
                                         <div class="form-group mb-3">
                                             <label>Description</label>
-                                            <input type="text" class="form-control" name="leader" value="<?= $infoDetail['leader']; ?>" />
-                                            <?php if(!empty($errorAdd['leader'])): ?>
-                                                <span class="text-danger"><?= $errorAdd['leader'] ?></span>
+                                            <input type="text" class="form-control" name="description" value="<?= $infoDetail['description']; ?>" />
+                                            <?php if(!empty($errorAdd['description'])): ?>
+                                                <span class="text-danger"><?= $errorAdd['description'] ?></span>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -65,16 +65,16 @@ $errorAdd = $_SESSION['error_course'] ?? null;
                                                 <option
                                                     value="1"
                                                     <?= $infoDetail['status'] == 1 ? 'selected' : null; ?>
-                                                >Active</option>
+                                                >Studying</option>
                                                 <option
                                                     value="0"
                                                     <?= $infoDetail['status'] == 0 ? 'selected' : null; ?>
-                                                >Deactive</option>
+                                                >Finish the course</option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label> Date </label>
-                                            <input type="date" class="form-control" name="beginning_date" value="<?= $infoDetail['beginning_date']; ?>" />
+                                            <label> Date Start </label>
+                                            <input type="date" class="form-control" name="date_beginning" value="<?= $infoDetail['date_beginning']; ?>" />
                                         </div>
                                         <div class="form-group mb-3">
                                             <label> Logo </label>

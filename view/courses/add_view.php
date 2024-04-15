@@ -37,11 +37,11 @@ $errorAdd = $_SESSION['error_course'] ?? null;
                     <div class="card card-primary">
                         <div class="card-header">
                             <h5 class="card-title">
-                                Create course
+                                Create Course
                             </h5>
                         </div>
                         <div class="card-body">
-                            <form enctype="multipart/form-data" method="post" action="index.php?c=course&m=handle-add">
+                            <form enctype="multipart/form-data" method="post" action="index.php?c=Course&m=handle-add">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <div class="form-group mb-3">
@@ -53,9 +53,9 @@ $errorAdd = $_SESSION['error_course'] ?? null;
                                         </div>
                                         <div class="form-group mb-3">
                                             <label>Description</label>
-                                            <input type="text" class="form-control" name="leader" />
-                                            <?php if(!empty($errorAdd['leader'])): ?>
-                                                <span class="text-danger"><?= $errorAdd['leader'] ?></span>
+                                            <input type="text" class="form-control" name="description" />
+                                            <?php if(!empty($errorAdd['description'])): ?>
+                                                <span class="text-danger"><?= $errorAdd['description'] ?></span>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -63,12 +63,12 @@ $errorAdd = $_SESSION['error_course'] ?? null;
                                         <div class="form-group mb-3">
                                             <label> Status </label>
                                             <select class="form-control" name="status">
-                                                <option value="1">Active</option>
-                                                <option value="0">Deactive</option>
+                                                <option value="1">Studying</option>
+                                                <option value="0">Finish the course</option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label> Date </label>
+                                            <label> Date Start</label>
                                             <input type="date" class="form-control" name="beginning_date" />
                                         </div>
                                         <div class="form-group mb-3">

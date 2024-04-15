@@ -2,7 +2,7 @@
 require "database/database.php";
 
 function updateCourseById(
-    $course,
+    $name,
     $slug,
     $description,
     $status,
@@ -14,14 +14,14 @@ function updateCourseById(
     date_default_timezone_set('Asia/Ho_Chi_Minh');
     $db = connectionDb();
     $checkUpdate = false;
-    $sql = "UPDATE `courses` SET `name` = :nameCourse, `slug` = :slug, `description` = :description, `beginning_date` = :beginning_date, `status` = :statusCourse, `logo` = :logo, `updated_at` = :updated_at WHERE `id` = :id AND `deleted_at` IS NULL";
+    $sql = "UPDATE `courses` SET `name` = :nameCourse, `slug` = :slug, `description` = :description, `date_beginning` = :date_beginning, `status` = :statusCourse, `logo` = :logo, `updated_at` = :updated_at WHERE `id` = :id AND `deleted_at` IS NULL";
     $updateTime = date('Y-m-d H:i:s');
     $stmt = $db->prepare($sql);
     if($stmt){
-        $stmt->bindParam(':nameCourse', $course, PDO::PARAM_STR);
+        $stmt->bindParam(':nameCourse', $name, PDO::PARAM_STR);
         $stmt->bindParam(':slug', $slug, PDO::PARAM_STR);
         $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-        $stmt->bindParam(':beginning_date', $beginDate, PDO::PARAM_STR);
+        $stmt->bindParam(':date_beginning', $beginDate, PDO::PARAM_STR);
         $stmt->bindParam(':statusCourse', $status, PDO::PARAM_INT);
         $stmt->bindParam(':logo', $logo, PDO::PARAM_STR);
         $stmt->bindParam(':updated_at', $updateTime, PDO::PARAM_STR);
@@ -36,7 +36,7 @@ function updateCourseById(
 
 function getDetailCourseById($id = 0){
     $db = connectionDb();
-    $sql = "SELECT * FROM `Courses` WHERE `id` = :id AND `deleted_at` IS NULL";
+    $sql = "SELECT * FROM `courses` WHERE `id` = :id AND `deleted_at` IS NULL";
     $stmt = $db->prepare($sql);
     $infoCourse = [];
     if($stmt){
@@ -112,7 +112,7 @@ function getAllDataCoursesByPage($keyword = null, $start = 0, $limit = LIMIT_ITE
     return $dataCourses;
 }
 function insertCourse(
-    $course,
+    $name,
     $description,
     $status,
     $beginDate,
@@ -121,14 +121,14 @@ function insertCourse(
     date_default_timezone_set('Asia/Ho_Chi_Minh');
     $db = connectionDb();
     $flagInsert = false;
-    $sqlInsert = "INSERT INTO `courses`(`name`, `slug`, `description`,`beginning_date`, `status`, `logo`, `created_at`) VALUES(:nameCourse, :slug, :description, :beginning_date, :statusCourse, :logo, :created_at)";
+    $sqlInsert = "INSERT INTO `courses`(`name`, `slug`, `description`,`date_beginning`, `status`, `logo`, `created_at`) VALUES(:nameCourse, :slug, :description, :date_beginning, :statusCourse, :logo, :created_at)";
     $stmt = $db->prepare($sqlInsert);
     $currentDate = date('Y-m-d H:i:s');
     if($stmt){
-        $stmt->bindParam(':nameCourse', $course, PDO::PARAM_STR);
-        $stmt->bindParam(':slug', $course, PDO::PARAM_STR);
+        $stmt->bindParam(':nameCourse', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':slug', $name, PDO::PARAM_STR);
         $stmt->bindParam(':description', $description, PDO::PARAM_STR);
-        $stmt->bindParam(':beginning_date', $beginDate, PDO::PARAM_STR);
+        $stmt->bindParam(':date_beginning', $beginDate, PDO::PARAM_STR);
         $stmt->bindParam(':statusCourse', $status, PDO::PARAM_INT);
         $stmt->bindParam(':logo', $logo, PDO::PARAM_STR);
         $stmt->bindParam(':created_at', $currentDate, PDO::PARAM_STR);

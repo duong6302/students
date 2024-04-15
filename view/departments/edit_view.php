@@ -74,7 +74,7 @@ $errorAdd = $_SESSION['error_department'] ?? null;
                                         </div>
                                         <div class="form-group mb-3">
                                             <label> Date </label>
-                                            <input type="date" class="form-control" name="beginning_date" value="<?= $infoDetail['beginning_date']; ?>" />
+                                            <input type="date" class="form-control" name="date_beginning" value="<?= $infoDetail['date_beginning']; ?>" />
                                         </div>
                                         <div class="form-group mb-3">
                                             <label> Logo </label>

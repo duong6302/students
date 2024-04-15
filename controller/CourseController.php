@@ -32,8 +32,8 @@ function handleUpdate()
         $id = $_GET['id'] ?? null;
         $id = is_numeric($id) ? $id : 0;
 
-        $course = trim($_POST['course'] ?? null);
-        $course = strip_tags($course);
+        $name = trim($_POST['name'] ?? null);
+        $name = strip_tags($name);
 
         $description = trim($_POST['description'] ?? null);
         $description = strip_tags($description);
@@ -41,7 +41,7 @@ function handleUpdate()
         $status = trim($_POST['status'] ?? null);
         $status = $status === '0' || $status === '1' ? $status : 0;
 
-        $beginningDate = trim($_POST['beginning_date'] ?? null);
+        $beginningDate = trim($_POST['date_beginning'] ?? null);
         $beginningDate = date('Y-m-d', strtotime($beginningDate));
         
         $info = getDetailCourseById($id);
@@ -66,13 +66,13 @@ function handleUpdate()
                 $_SESSION['error_course']['logo'] = null;
             }
         }
-        if (empty($course)) {
-            $_SESSION['error_course']['course'] = 'Enter course, please';
+        if (empty($name)) {
+            $_SESSION['error_course']['name'] = 'Enter name, please';
         } else {
-            $_SESSION['error_course']['course'] = null;
+            $_SESSION['error_course']['name'] = null;
         }
         if (empty($description)) {
-            $_SESSION['error_course']['description'] = "Enter name's description, please";
+            $_SESSION['error_course']['description'] = "Enter description, please";
         } else {
             $_SESSION['error_course']['description'] = null;
         }
@@ -94,10 +94,10 @@ function handleUpdate()
             if(isset($_SESSION['error_course'])){
                 unset($_SESSION['error_course']);
             }
-            $slug = slugify($course);
+            $slug = slugify($name);
             
             $update = updateCourseById(
-                $course,
+                $name,
                 $slug,
                 $description,
                 $status,
@@ -143,8 +143,8 @@ function handleDelete()
 function handleAdd()
 {
     if (isset($_POST['btnSave'])) {
-        $course = trim($_POST['course'] ?? null);
-        $course = strip_tags($course);
+        $name = trim($_POST['name'] ?? null);
+        $name = strip_tags($name);
 
         $description = trim($_POST['description'] ?? null);
         $description = strip_tags($description);
@@ -152,7 +152,7 @@ function handleAdd()
         $status = trim($_POST['status'] ?? null);
         $status = $status === '0' || $status === '1' ? $status : 0;
 
-        $beginningDate = trim($_POST['beginning_date'] ?? null);
+        $beginningDate = trim($_POST['date_beginning'] ?? null);
         $beginningDate = date('Y-m-d', strtotime($beginningDate));
 
         // check du lieu
@@ -175,18 +175,18 @@ function handleAdd()
             }
         }
         if (empty($name)) {
-            $_SESSION['error_course']['course'] = 'Enter course, please';
+            $_SESSION['error_course']['name'] = 'Enter name, please';
         } else {
-            $_SESSION['error_course']['course'] = null;
+            $_SESSION['error_course']['name'] = null;
         }
-        if (empty($leader)) {
-            $_SESSION['error_course']['description'] = "Enter name's description, please";
+        if (empty($description)) {
+            $_SESSION['error_course']['description'] = "Enter description , please";
         } else {
             $_SESSION['error_course']['description'] = null;
         }
 
         if (
-            !empty($_SESSION['error_course']['course'])
+            !empty($_SESSION['error_course']['name'])
             ||
             !empty($_SESSION['error_course']['description'])
             ||
@@ -199,7 +199,7 @@ function handleAdd()
             if (isset($_SESSION['error_course'])) {
                 unset($_SESSION['error_course']);
             }
-            $insert = insertCourse($course, $description, $status, $beginningDate, $logo);
+            $insert = insertCourse($name, $description, $status, $beginningDate, $logo);
             if ($insert) {
                 header("Location:index.php?c=course&state=success");
             } else {

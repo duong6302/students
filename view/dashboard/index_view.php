@@ -44,3 +44,16 @@ $namePage = 'Dashboard';
 
 <!-- load footer view -->
 <?php require APP_PATH_VIEW . "partials/footer_view.php"; ?>
+<script type="text/javascript">
+    let btnSearch = document.getElementById('btnSearchDepartment');
+    btnSearch.addEventListener('click', function(){
+        let keyword = document.getElementById('keywordDepartment');
+        let valueKeyword = keyword.value.trim();
+        if(valueKeyword != ''){
+            window.location.href = "index.php?c=department&search=" + valueKeyword;
+        } else {
+            alert("Enter keyword, please");
+            return;
+        }
+    });
+</script>
